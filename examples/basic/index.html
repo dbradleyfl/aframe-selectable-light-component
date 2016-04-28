@@ -1,12 +1,27 @@
 <html>
   <head>
-    <title>A-Frame Example Component - Basic</title>
+    <title>A-Frame Selectable Light Component - Basic</title>
     <script src="../build.js"></script>
   </head>
   <body>
     <a-scene>
       <a-assets></a-assets>
-      <a-entity geometry="primitive: box" material="color: #C03546"></a-entity>
+      <a-entity selectable>
+        <a-entity geometry="primitive: box" material="color: #C03546"></a-entity>
+      </a-entity>
+
+      <a-sky color="#2ca9df"></a-sky>
+
+      <a-entity position="0 1.8 4">
+        <a-entity camera="active:true" wasd-controls="" look-controls="" rotation="-24.178818954520754 0.3437746770785027 0" position="0 0 0">
+          <a-cursor></a-cursor>
+        </a-entity>
+      </a-entity>
     </a-scene>
+    <script type="text/javascript">
+      document.querySelector('a-entity[selectable]').addEventListener('selected', (e) => {
+        console.log(e.selected);
+      });
+    </script>
   </body>
 </html>

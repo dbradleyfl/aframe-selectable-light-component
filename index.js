@@ -3,42 +3,40 @@ if (typeof AFRAME === 'undefined') {
 }
 
 /**
- * Example component for A-Frame.
+ * Selectable Light component for A-Frame.
  */
-AFRAME.registerComponent('example', {
+AFRAME.registerComponent('selectable', {
   schema: { },
 
-  /**
-   * Called once when component is attached. Generally for initial setup.
-   */
-  init: function () { },
+    /**
+     * Called once when component is attached. Generally for initial setup.
+     */
+    init: function () {
+      this.selected = null;
+    },
 
-  /**
-   * Called when component is attached and when component data changes.
-   * Generally modifies the entity based on the data.
-   */
-  update: function (oldData) { },
+    /**
+     * Called when component is attached and when component data changes.
+     * Generally modifies the entity based on the data.
+     */
+    update: function (oldData) {
+      var self = this;
 
-  /**
-   * Called when a component is removed (e.g., via removeAttribute).
-   * Generally undoes all modifications to the entity.
-   */
-  remove: function () { },
+      this.el.addEventListener('click', function (e) {
+        if (e.target === self.el) {
+          self.select(null);
+          return;
+        }
 
-  /**
-   * Called on each scene tick.
-   */
-  // tick: function (t) { },
+        self.select(e.target);
+      });
+    },
 
-  /**
-   * Called when entity pauses.
-   * Use to stop or remove any dynamic or background behavior such as events.
-   */
-  pause: function () { },
+    select: function (entity) {
+      this.selected = entity;
 
-  /**
-   * Called when entity resumes.
-   * Use to continue or add any dynamic or background behavior such as events.
-   */
-  play: function () { },
-});
+      var event = new Event('selected');
+      event.selected = this.selected;
+      this.el.dispatchEvent(event);
+    }
+  });
