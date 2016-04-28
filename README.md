@@ -1,6 +1,6 @@
 ## aframe-selectable-component
 
-Selectable Light is a component for [A-Frame](https://aframe.io). It is a fork of [scenevr/selectable-component](https://github.com/scenevr/selectable-component) minus the boundingbox. The bounding box causes performance issues when you make an <a-image></a-image> selectable.
+Selectable Light is a component for [A-Frame](https://aframe.io). It is a fork of [scenevr/selectable-component](https://github.com/scenevr/selectable-component) minus the boundingbox. The bounding box in scenevr/selectable-component causes performance issues when you make an a-image selectable.
 
 ### Usage
 
